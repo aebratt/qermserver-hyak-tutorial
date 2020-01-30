@@ -4,11 +4,78 @@ author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
 date: February 5, 2020
 output: ioslides_presentation
 ---
+<!-- General Outline: -->
+<!-- Colin (30m) - Intro to how a computer works and some parallelization exercises -->
+<!-- Maria (30m) - Walk through an example on the SEFS servers -->
+<!-- Abby (30m) - Walk through an example on Hyak -->
+
+# Objectives
 
 # Why Parallelize?
+
+<!-- I (Abby) think it would be good to say something about code profiling also -->
+<!-- And thinking through when your code is memory intensive vs. cpu intensive, how a computer works, etc -->
 
 # How to Access the QERM/SEFS Servers
 
 # A Basic R Program
 
 # How to Access Hyak
+
+<!-- Outline: -->
+<!-- 1. What is hyak?  -->
+<!-- 2. How does hyak work? -->
+<!-- 3. How to log in -->
+<!-- 4. How to upload files -->
+<!-- 5. How to write a batch script (things you submit to slurm) -->
+<!-- 6. How to submit a job -->
+<!--   6bonus - wait, what if I need a special library or piece of software? -->
+<!-- 7. How to check what's happening in the queue -->
+<!-- 8. How to download finished results -->
+<!-- 9. How to game slurm (requesting memory, etc strategically so you get high priority) -->
+<!-- 10. Where do get help doing things more advanced than this (multinode stuff, working in languages that need to be compiled, etc) -->
+
+## What is hyak?
+
+## How does hyak work?
+
+## How do I log in?
+
+Open a terminal window. Type
+
+```
+ssh UWNETID@mox.hyak.uw.edu
+```
+
+Follow two-factor authentication instructions. 
+
+You're in! 
+
+## {.centered}
+![](images/Hyak_successful_login.png)
+
+<!-- Only works if you have access to Hyak, of course! -->
+
+## How do I upload files?
+
+## What is a batch script?
+
+## How do I write a batch script?
+
+Short answer: don't. Modify a template! Here's a start:
+
+## How do I submit a job to the queue?
+
+## Wait, what if I need some special library or software?
+
+## When will my jobs run?
+
+## My job finished! How do I download my results?
+
+## How can I get higher priority in the queue?
+
+## Bonus tip: Stop typing your GitHub password all the time
+
+<!-- setup ssh key on github -->
+
+## Where do I get help?
