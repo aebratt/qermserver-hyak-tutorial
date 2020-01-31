@@ -20,12 +20,12 @@
 
 #SBATCH --mail-type=ALL
 
-#SBATCH --mail-user=UWNETID@uw.edu
+#SBATCH --mail-user=aebratt@uw.edu
 
 
 ## Memory per node
 #SBATCH --mem=100G
 ## Specify the working directory for this job
-#SBATCH --chdir=/gscratch/stf/UWNETID/qermserver-hyak-tutorial
+#SBATCH --chdir=/gscratch/stf/aebratt/qermserver-hyak-tutorial
 
-/gscratch/stf/UWNETID/qermserver-hyak-tutorial/Hyak_simple.R
+/gscratch/stf/aebratt/qermserver-hyak-tutorial/Hyak_simple.R
