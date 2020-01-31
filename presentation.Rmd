@@ -3,6 +3,12 @@ title: "Parallelization and Remote Servers"
 author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
 date: February 5, 2020
 output: ioslides_presentation
+header-includes: 
+  - \usepackage{tikz}
+  - \usepackage{pgfplots}
+  - \usepackage{verbatim}
+  - \usepackage{textcomp}
+  - \usetikzlibrary{shapes,arrows}
 ---
 <!-- General Outline: -->
 <!-- Colin (30m) - Intro to how a computer works and some parallelization exercises -->
@@ -37,9 +43,104 @@ output: ioslides_presentation
 
 ## What is hyak?
 
+Hyak is a word in Chinook Jargon, meaning "fast." Chinook Jargon is the trade language of the Pacific Northwest, incorporating terms from Chinook and Chehalis and other local languages, as well as French and English. We've chosen words from Chinook Jargon for the names of systems in the UW research cyber infrastructure to emphasize their role in supporting the broad range of UW research users and our ties to our place between the mountains and Salish Sea.
+
+--UW IT Connect
+
+## What is hyak?
+
+Hyak is part of an integrated, scalable, scientific super-computing infrastructure operated by UW-IT. It includes the lolo tapearchive system, a high-performance research network, **the Hyak compute infrastructure (the HPC clusters)**, and any scientific support services on making this useful in your research workflows.
+
+--UW IT Connect
+
 ## How does hyak work?
 
+Within hyak, **mox** is a supercomputing **cluster**. 
+
+A **cluster** is a set of connected computers, **nodes**, that work together in a single system.
+
+In general, **clusters** are faster and more capable than a single computer or even several disconnected computers. 
+
+--UW Research Computing Club
+
+## How does hyak work?
+
+On mox, labs or groups can buy groups of nodes called **partitions**. The Research Computing Club applied for a big grant from the Student Technology Fee fund (that we all pay into every quarter!) to purchase nodes accessible to all students. 
+
+<!-- If you want to vote on how these dollars get allocated, you can submit proposals or endorse others' proposals on the uwstf website https://uwstf.org/proposals/2020/21 -->
+
+## How does hyak work?
+
+In general, the compute nodes have the following specs:
+
+  * 28 cores
+  
+  * 128 GB RAM
+  
+The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes. 
+
+What does that mean?
+
+Hint: it's a lot
+
+## How does hyak work?
+
+<!-- structure goes here -->
+
+There are three types of node:
+
+  * Login nodes (mox1, mox2)
+      * Have internet
+      * Use these to upload/download files and submit jobs
+      * They are slow so __don't__ do heavy processing
+      
+## How does hyak work?
+
+<!-- structure goes here -->
+
+There are three types of node:
+
+  * Login nodes (mox1, mox2)
+      * Have internet
+      * Use these to upload/download files and submit jobs
+      * They are slow so __don't__ do heavy processing
+  
+  * Build nodes (n#####)
+      * Have internet
+      * Don't get to take a whole node (so also kinda slow)
+      * Just for compiling software
+
+## How does hyak work?
+
+<!-- structure goes here -->
+
+There are three types of node:
+
+  * Login nodes (mox1, mox2)
+      * Have internet
+      * Use these to upload/download files and submit jobs
+      * They are slow so __don't__ do heavy processing
+  
+  * Build nodes (n#####)
+      * Have internet
+      * Don't get to take a whole node (so also kinda slow)
+      * Just for compiling software
+  
+  * Compute nodes (n#####)
+      * No internet
+      * Where your jobs run
+      
+## How does Hyak work?
+
+Visually, this looks like:
+
+<div class="centered">
+![](images/Hyak_architecture.png){width=500px}
+</div>
+  
 ## How do I log in?
+
+All nodes share the same file system.
 
 Open a terminal window. Type
 
@@ -49,20 +150,72 @@ ssh UWNETID@mox.hyak.uw.edu
 
 Follow two-factor authentication instructions. 
 
-You're in! 
+You're in!
 
-## {.centered}
-![](images/Hyak_successful_login.png)
+## It should look like this...
+
+<div class="centered">
+![](images/Hyak_successful_login.png){width=500px}
+</div>
 
 <!-- Only works if you have access to Hyak, of course! -->
 
+## Exercise
+
+Log in!
+
 ## How do I upload files?
+
+From GitHub:
+
+```
+git clone git@github.com:GITHUB-USERNAME/REPO-NAME
+```
+ 
+## How do I upload files?
+
+From GitHub:
+
+```
+git clone git@github.com:GITHUB-USERNAME/REPO-NAME
+```
+
+From your computer:
+
+```
+scp filename UWNETID@mox.hyak.uw.edu:path/to/destination/directory
+```
+
+## Exercise
+
+Clone the git repo for this class to **your** scratch directory
+
+## Exercise
+
+Clone the git repo for this class to **your** scratch directory
+
+**Hint:** 
+
+From login 
+
+```
+cd /gscratch/stf
+mkdir ./UWNETID
+cd ./UWNETID
+git clone git@github.com:GITHUB-USERNAME/REPO-NAME
+```
+
+**Bonus:**
+
+Why use the scratch directory?
 
 ## What is a batch script?
 
 ## How do I write a batch script?
 
-Short answer: don't. Modify a template! Here's a start:
+Short answer: don't. 
+
+Modify a template! Here's a start:
 
 ## How do I submit a job to the queue?
 
