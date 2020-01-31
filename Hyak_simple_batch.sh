@@ -28,4 +28,4 @@
 ## Specify the working directory for this job
 #SBATCH --chdir=/gscratch/stf/UWNETID/qermserver-hyak-tutorial
 
-/gscratch/stf/aebratt/fish_cpp_hyak/bin/headless
+/gscratch/stf/UWNETID/qermserver-hyak-tutorial/Hyak_simple.R
