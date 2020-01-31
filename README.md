@@ -50,7 +50,7 @@ We find the Hyak wiki really difficult to navigate. In our opinion the most usef
   
   * [Scheduling jobs](https://wiki.cac.washington.edu/display/hyakusers/Mox_scheduler)
   
-  * [Slurm tutorial](https://wiki.cac.washington.edu/display/hyakusers/Mox_scheduler)
+  * [Slurm tutorial](https://slurm.schedmd.com/quickstart.html)
   
   * [Research Computing Club](https://depts.washington.edu/uwrcc/)
   
@@ -61,6 +61,8 @@ If you don't find what you need there and you have hunted around for a bit, the 
 #### General
 
   * [eScience Institute office hours](https://escience.washington.edu/office-hours/)
+  
+  * [How to add a new SSH key to your GitHub account](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh). Stop typing your GitHub password every time you do something!
   
   * other resources???
 

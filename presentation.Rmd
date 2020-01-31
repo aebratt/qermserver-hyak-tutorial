@@ -155,7 +155,7 @@ You're in!
 ## It should look like this...
 
 <div class="centered">
-![](images/Hyak_successful_login.png){width=500px}
+![](images/Hyak_successful_login.png){width=600px}
 </div>
 
 <!-- Only works if you have access to Hyak, of course! -->
@@ -203,6 +203,7 @@ cd /gscratch/stf
 mkdir ./UWNETID
 cd ./UWNETID
 git clone git@github.com:GITHUB-USERNAME/REPO-NAME
+cd REPO-NAME
 ```
 
 **Bonus:**
@@ -211,32 +212,109 @@ Why use the scratch directory?
 
 ## What is a batch script?
 
+
 ## How do I write a batch script?
 
 Short answer: don't. 
 
-Modify a template! Here's a start:
+Modify a template! Here's one:
 
-## How do I submit a job to the queue?
+```
+vim Hyak_simple_batch.sh
+```
+
+Or open this file in your favorite text editor
+
+## It should look like this...
+
+<div class="centered">
+![](images/Hyak_simple_batch.png){width=600px}
+</div>
 
 ## Exercise
+
+Submit a job to the queue!
+
+## Exercise
+
+Submit a job to the queue!
 
 **Hint:**
 
 ```
 cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
+sbatch -p stf -A stf Hyak_simple_batch.sh
 ```
 
 ## Wait, what if I need some special library or software?
 
 ## When will my jobs run?
 
+See the whole stf partition queue this way:
+
+```
+squeue -p stf
+```
+
+See just your jobs this way:
+
+```
+squeue -p stf -u UWNETID
+```
+
+You can also try:
+
+```
+sstat -j JOBID-RUNNING
+sacct -j JOBID-COMPLETED
+```
+
+## Oops, I made a mistake!
+
+Cancel jobs with 
+
+```
+scancel JOBID#
+```
+
 ## My job finished! How do I download my results?
 
-## How can I get higher priority in the queue?
+## How can I get higher priority?
 
-## Bonus tip: Stop typing your GitHub password all the time
+You can check the priority of queued jobs with
+```
+sprio -p stf
+```
+How to interpret?
 
-<!-- setup ssh key on github -->
+It may look something like 
+
+<div class="centered">
+![](images/Hyak_priority.png){width=600px}
+</div>
+
+## How can I get higher priority?
+
+  * **TRES**: Trackable RESources (TRES) are things like cpu, memory, nodes. The more a given TRES Type is requested/allocated on a job, the greater the job priority will be for that job. Mox cares about cpu (i.e. high CPU gets high priority)
+  
+  * **Fair-share**: The fair-share component to a job's priority influences the order in which a user's queued jobs are scheduled to run based on the portion of the computing resources they have been allocated and the resources their jobs have already consumed. High priority to under-serviced accounts. 
+  
+  * Do not specify a walltime way longer than your job needs.
+  
+  * Specify your memory! For 128G nodes use --mem=120G or less. The operating system requires some. 
 
 ## Where do I get help?
+
+If you have trouble or you want to do more advanced stuff, check out
+
+```
+man SLURMCOMMAND
+```
+
+If all else fails, try
+
+  * Research Computing Club
+  
+  * eScience Institute
+  
+  * UW IT
