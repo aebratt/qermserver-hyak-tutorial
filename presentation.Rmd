@@ -2,7 +2,10 @@
 title: "Parallelization and Remote Servers"
 author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
 date: February 5, 2020
-output: ioslides_presentation
+output: 
+    ioslides_presentation: 
+        incremental: true
+        widescreen: true
 header-includes: 
   - \usepackage{tikz}
   - \usepackage{pgfplots}
@@ -38,15 +41,12 @@ header-includes:
 
 ## ''Why is my code so slow''
 
-The most common cases are:
-
-- You've run out of RAM
-- Your computer just has too many operations to do
-
-''How do I make it faster''
-
-- Run it on a bigger computer with more RAM
-- Run it on a bigger computer with more cores
+- The most common cases are:
+    - You've run out of RAM
+    - Your computer just has too many operations to do
+- ''How do I make it faster''
+    - Run it on a bigger computer with more RAM
+    - Run it on a bigger computer with more cores
 
 ## ''Why is my code still so slow''
 
@@ -55,9 +55,9 @@ Before you use a remote server:
 - Do some back-of-the-envelope math
 - Make sure you don't need an EB of RAM or an EFLOP
 - Sidenote: Units
-    - kilo (\(10^3\)), mega (\(10^6\)), giga (\(10^9\)), tera (\(10^{12}\)), peta (\(10^{15}\)), exa (\(10^{18}\)), zetta (\(10^{21}\)), yotta (\(10^{24}\))
+    - kilo, mega, giga (\(10^9\)), tera (\(10^{12}\)), peta (\(10^{15}\)), exa (\(10^{18}\)), zetta, yotta
     - FLOP(S) = floating point operation (per second)
-    - newish desktop might have 32 GB RAM, 25 GLOPS
+    - newish desktop might have 32 GB RAM, 25 GLOPS speed
 
 ## (Dis)advantages of parallelization
 
@@ -66,14 +66,14 @@ Before you use a remote server:
 - only if you efficiently distribute computation between cores
 - only if the programmer-time it takes is small
 
-- Iterative algorithms: the bane of parallel computation
+- Sequential computation: the bane of parallel computation
 - Communication: the real bane of parallel computation
 
-## Example: Conjugate Gradient Descent
+## Example: Conjugate Gradient Descent {.build}
 
 Suppose you wish to calculate \(y = Ax\) but \(A = 10^5 \times 10^5\)
 
-Roughly speaking, \(A\) requites about \(10^{10}\) bytes or 10 GB
+Roughly speaking, \(A\) requites about \(10^{10}\) bytes or 10 GB RAM
 
 Moreover, you need to do \(10^{10}\) multiplications or 10 GFLOPs
 
