@@ -15,11 +15,11 @@
 #SBATCH --time=0:05:00
 ##turn on e-mail notification
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=aebratt@uw.edu
+#SBATCH --mail-user=UWNETID@uw.edu
 ## Memory per node
 #SBATCH --mem=10G
 ## Specify the working directory for this job
-#SBATCH --chdir=/gscratch/stf/aebratt/qermserver-hyak-tutorial
+#SBATCH --chdir=/gscratch/stf/UWNETID/qermserver-hyak-tutorial
 ## Here is the stuff you actually want to run
 module load  r_3.6.0
-Rscript > Hyak_complicated_output.txt 2>&1 /gscratch/stf/aebratt/qermserver-hyak-tutorial/Hyak_complicated.R
+Rscript > Hyak_complicated_output.txt 2>&1 /gscratch/stf/UWNETID/qermserver-hyak-tutorial/Hyak_complicated.R
