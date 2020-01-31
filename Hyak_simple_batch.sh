@@ -24,8 +24,8 @@
 
 
 ## Memory per node
-#SBATCH --mem=1G
+#SBATCH --mem=10G
 ## Specify the working directory for this job
 #SBATCH --chdir=/gscratch/stf/aebratt/qermserver-hyak-tutorial
 
-/gscratch/stf/aebratt/qermserver-hyak-tutorial/Hyak_simple.R
+Hyak_simple.R
