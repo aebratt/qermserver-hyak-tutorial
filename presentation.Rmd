@@ -61,8 +61,6 @@ A **cluster** is a set of connected computers, **nodes**, that work together in 
 
 In general, **clusters** are faster and more capable than a single computer or even several disconnected computers. 
 
---UW Research Computing Club
-
 ## How does hyak work?
 
 On mox, labs or groups can buy groups of nodes called **partitions**. The Research Computing Club applied for a big grant from the Student Technology Fee fund (that we all pay into every quarter!) to purchase nodes accessible to all students. 
@@ -188,7 +186,7 @@ git clone git@github.com:GITHUB-USERNAME/REPO-NAME
 From your computer:
 
 ```
-scp filename UWNETID@mox.hyak.uw.edu:path/to/destination/directory
+scp filename UWNETID@mox.hyak.uw.edu:/path/to/destination/directory
 ```
 
 ## Exercise
@@ -259,6 +257,8 @@ Submit a job to the queue!
 
 **Hint:**
 
+First, open vim or another text editor and replace UWNETID in Hyak_simple_batch.sh
+
 ```
 cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
 sbatch -p stf -A stf Hyak_simple_batch.sh
@@ -293,6 +293,8 @@ Choose a mirror somewhere on the west coast and press enter.
 Submit a more complicated job to the queue!
 
 **Hint:**
+
+First, open vim or another text editor and replace UWNETID in Hyak_complicated.R and Hyak_complicated_batch.sh
 
 ```
 exit
@@ -342,7 +344,7 @@ git push
 From Hyak to your computer:
 
 ```
-scp UWNETID@hyak.washington.edu:path/to/file
+scp UWNETID@mox.hyak.uw.edu:/path/to/file .
 ```
 
 ## How can I get higher priority?
