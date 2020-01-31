@@ -1,0 +1,1 @@
+cat("Hello, world!", fill=TRUE, file="Hyak_simple_output.txt")
