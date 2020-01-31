@@ -27,5 +27,5 @@
 #SBATCH --mem=10G
 ## Specify the working directory for this job
 #SBATCH --chdir=/gscratch/stf/aebratt/qermserver-hyak-tutorial
-
-Hyak_simple.R
+module load  r_3.6.0
+Rscript > Hyak_simple_output.txt 2>&1 /gscratch/stf/aebratt/qermserver-hyak-tutorial/Hyak_simple.R

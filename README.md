@@ -54,6 +54,8 @@ We find the Hyak wiki really difficult to navigate. In our opinion the most usef
   
   * [Research Computing Club](https://depts.washington.edu/uwrcc/)
   
+  * [R Programming on Hyak](https://wiki.cac.washington.edu/display/hyakusers/Hyak+R+programming)
+  
 If you don't find what you need there and you have hunted around for a bit, the Research Computing Club officers hold office hours in the eScience Institute. Find out [when](https://escience.washington.edu/office-hours/). 
 
 #### General
