@@ -92,7 +92,7 @@ slide:not(.current) .plotly.html-widget{
 
 <body style="opacity: 0">
 
-<slides>
+<slides class="layout-widescreen">
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -114,11 +114,122 @@ slide:not(.current) .plotly.html-widget{
 
 <slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Objectives</h2></hgroup><article  id="objectives">
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Why Parallelize?</h2></hgroup><article  id="why-parallelize">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Remote Servers: Why Bother?</h2></hgroup><article  id="remote-servers-why-bother">
 
 <!-- I (Abby) think it would be good to say something about code profiling also -->
 
 <!-- And thinking through when your code is memory intensive vs. cpu intensive, how a computer works, etc -->
+
+</article></slide><slide class=""><hgroup><h2>The Basics: How Do Computers Work?</h2></hgroup><article  id="the-basics-how-do-computers-work">
+
+<ul class = 'build'>
+<li>Computation: CPUs
+
+<ul class = 'build'>
+<li>Each CPU has 1 or more cores</li>
+<li>Each core can do 1 computation at a time</li>
+<li>Theoretical top speed = all cores active</li>
+<li>Reality: cores need to communicate</li>
+</ul></li>
+<li>Memory: RAM vs. not-RAM
+
+<ul class = 'build'>
+<li>RAM is volatile, extremely fast, low-volume</li>
+<li>Hard drive (ex. SSD) is persistent, fairly slow, high-volume</li>
+</ul></li>
+<li>Sidenote: GPUs and CUDA
+
+<ul class = 'build'>
+<li>Each GPU holds 100s or 1000s of &#39;&#39;CUDA cores&#39;&#39;</li>
+<li>Each CUDA core is very small</li>
+<li>Very fast for &#39;&#39;embarassingly parallel&#39;&#39; problems</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>&#39;&#39;Why is my code so slow&#39;&#39;</h2></hgroup><article  id="why-is-my-code-so-slow">
+
+<ul class = 'build'>
+<li>The most common cases are:
+
+<ul class = 'build'>
+<li>You&#39;ve run out of RAM</li>
+<li>Your computer just has too many operations to do</li>
+</ul></li>
+<li>&#39;&#39;How do I make it faster&#39;&#39;
+
+<ul class = 'build'>
+<li>Run it on a bigger computer with more RAM</li>
+<li>Run it on a bigger computer with more cores</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>&#39;&#39;Why is my code still so slow&#39;&#39;</h2></hgroup><article  id="why-is-my-code-still-so-slow">
+
+<p>Before you use a remote server:</p>
+
+<ul class = 'build'>
+<li>Do some back-of-the-envelope math</li>
+<li>Make sure you don&#39;t need an EB of RAM or an EFLOP</li>
+<li>Sidenote: Units
+
+<ul class = 'build'>
+<li>kilo, mega, giga (\(10^9\)), tera (\(10^{12}\)), peta (\(10^{15}\)), exa (\(10^{18}\)), zetta, yotta</li>
+<li>FLOP(S) = floating point operation (per second)</li>
+<li>newish desktop might have 32 GB RAM, 25 GLOPS speed</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>(Dis)advantages of parallelization</h2></hgroup><article  id="disadvantages-of-parallelization">
+
+<p>\(N\) cores may save you time up to a factor of \(N\), but:</p>
+
+<ul class = 'build'>
+<li>only if you efficiently distribute computation between cores</li>
+<li><p>only if the programmer-time it takes is small</p></li>
+<li>Sequential computation: the bane of parallel computation</li>
+<li><p>Communication: the real bane of parallel computation</p></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Example: Conjugate Gradient Descent</h2></hgroup><article  id="example-conjugate-gradient-descent" class="build">
+
+<p>Suppose you wish to calculate \(y = Ax\) but \(A = 10^5 \times 10^5\)</p>
+
+<p>Roughly speaking, \(A\) requites about \(10^{10}\) bytes or 10 GB RAM</p>
+
+<p>Moreover, you need to do \(10^{10}\) multiplications or 10 GFLOPs</p>
+
+<p>Not so bad, but say you want to do this \(10^6\) times (\(\approx\) 6 days)</p>
+
+<p>Luckily \(y_i = \sum A_{ij}x_j\) is independent of all other rows of \(A\)</p>
+
+<p>Calculating \(y_i\) \(\approx\) 10kB, 10 kFLOPs, GPU takes \(\approx\) 15 minutes</p>
+
+<p>Application: conjugate gradient descent to solve \(Ax = b\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Recap: Why use a remote server?</h2></hgroup><article  id="recap-why-use-a-remote-server">
+
+<ul class = 'build'>
+<li>Lots of CPUs (often a few GPUs) available</li>
+<li>Doesn&#39;t slow down your personal computer</li>
+<li>Feel like a pro, brag to your friends</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Review</h2></hgroup><article  id="review">
+
+<ul class = 'build'>
+<li>When should you parallelize?</li>
+<li>When should you definitely not parallelize?</li>
+<li>When should you use a remote server?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Practice</h2></hgroup><article  id="practice">
+
+<ul class = 'build'>
+<li>MCMC</li>
+<li>Bootstrap</li>
+<li>Likelihood evaluation</li>
+<li>Optimization</li>
+</ul>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>How to Access the QERM/SEFS Servers</h2></hgroup><article  id="how-to-access-the-qermsefs-servers">
 
@@ -164,13 +275,11 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work">
 
-<p>Within hyak, <strong>mox</strong> is a supercomputing <strong>cluster</strong>.</p>
-
-<p>A <strong>cluster</strong> is a set of connected computers, <strong>nodes</strong>, that work together in a single system.</p>
-
-<p>In general, <strong>clusters</strong> are faster and more capable than a single computer or even several disconnected computers.</p>
-
-<p>&#8211;UW Research Computing Club</p>
+<ul class = 'build'>
+<li><p>Within hyak, <strong>mox</strong> is a supercomputing <strong>cluster</strong>.</p></li>
+<li><p>A <strong>cluster</strong> is a set of connected computers, <strong>nodes</strong>, that work together in a single system.</p></li>
+<li><p>In general, <strong>clusters</strong> are faster and more capable than a single computer or even several disconnected computers.</p></li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-1">
 
@@ -180,82 +289,45 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-2">
 
-<p>In general, the compute nodes have the following specs:</p>
+<ul class = 'build'>
+<li><p>In general, the compute nodes have the following specs:</p>
 
-<ul>
+<ul class = 'build'>
 <li><p>28 cores</p></li>
 <li><p>128 GB RAM</p></li>
+</ul></li>
+<li><p>The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes.</p></li>
+<li><p>That&#39;s a lot</p></li>
 </ul>
-
-<p>The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes.</p>
-
-<p>What does that mean?</p>
-
-<p>Hint: it&#39;s a lot</p>
 
 </article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-3">
 
 <!-- structure goes here -->
 
-<ul>
+<ul class = 'build'>
 <li>Login nodes (mox1, mox2)
 
-<ul>
-<li>Have internet</li>
-<li>Use these to upload/download files and submit jobs</li>
-<li>They are slow so <strong>don&#39;t</strong> do heavy processing</li>
-</ul></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-4">
-
-<!-- structure goes here -->
-
-<ul>
-<li>Login nodes (mox1, mox2)
-
-<ul>
+<ul class = 'build'>
 <li>Have internet</li>
 <li>Use these to upload/download files and submit jobs</li>
 <li>They are slow so <strong>don&#39;t</strong> do heavy processing</li>
 </ul></li>
 <li>Build nodes (n#####)
 
-<ul>
-<li>Have internet</li>
-<li>Don&#39;t get to take a whole node (so also kinda slow)</li>
-<li>Just for compiling software</li>
-</ul></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-5">
-
-<!-- structure goes here -->
-
-<ul>
-<li>Login nodes (mox1, mox2)
-
-<ul>
-<li>Have internet</li>
-<li>Use these to upload/download files and submit jobs</li>
-<li>They are slow so <strong>don&#39;t</strong> do heavy processing</li>
-</ul></li>
-<li>Build nodes (n#####)
-
-<ul>
+<ul class = 'build'>
 <li>Have internet</li>
 <li>Don&#39;t get to take a whole node (so also kinda slow)</li>
 <li>Just for compiling software</li>
 </ul></li>
 <li>Compute nodes (n#####)
 
-<ul>
+<ul class = 'build'>
 <li>No internet</li>
 <li>Where your jobs run</li>
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>How does Hyak work?</h2></hgroup><article  id="how-does-hyak-work-6">
+</article></slide><slide class=""><hgroup><h2>How does Hyak work?</h2></hgroup><article  id="how-does-hyak-work-4">
 
 <p>Visually, this looks like:</p>
 
@@ -287,33 +359,27 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>Important locations</h2></hgroup><article  id="important-locations">
 
-<ul>
+<ul class = 'build'>
 <li>/gscratch/stf
 
-<ul>
+<ul class = 'build'>
 <li>Main work location for stf users</li>
 <li>Any files untouched for &gt;30 days will be scrubbed!!</li>
 </ul></li>
 <li>/usr/lusers/<username>
 
-<ul>
+<ul class = 'build'>
 <li>Home directory</li>
 <li>Only 10 GB of storage per user</li>
 </ul></li>
 <li>/tmp
 
-<ul>
+<ul class = 'build'>
 <li>Node local storage</li>
 </ul></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>How do I upload files?</h2></hgroup><article  id="how-do-i-upload-files">
-
-<p>From GitHub:</p>
-
-<pre >git clone git@github.com:GITHUB-USERNAME/REPO-NAME</pre>
-
-</article></slide><slide class=""><hgroup><h2>How do I upload files?</h2></hgroup><article  id="how-do-i-upload-files-1">
 
 <p>From GitHub:</p>
 
@@ -347,19 +413,20 @@ cd REPO-NAME</pre>
 
 </article></slide><slide class=""><hgroup><h2>What is a batch script?</h2></hgroup><article  id="what-is-a-batch-script">
 
-<p>Place to:</p>
+<ul class = 'build'>
+<li><p>Place to:</p>
 
-<ul>
+<ul class = 'build'>
 <li><p>Define all the options for a job you submit to the queue</p></li>
 <li><p>Set up environment (e.g. load modules)</p></li>
 <li><p>Run!</p></li>
-</ul>
+</ul></li>
+<li><p>Syntax:</p>
 
-<p>Syntax:</p>
-
-<ul>
+<ul class = 'build'>
 <li><p>Comment using ##</p></li>
 <li><p>Set option using #SBATCH</p></li>
+</ul></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>How do I write a batch script?</h2></hgroup><article  id="how-do-i-write-a-batch-script">
@@ -386,6 +453,8 @@ cd REPO-NAME</pre>
 <p>Submit a job to the queue!</p>
 
 <p><strong>Hint:</strong></p>
+
+<p>First, open vim or another text editor and replace UWNETID in Hyak_simple_batch.sh</p>
 
 <pre >cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
 sbatch -p stf -A stf Hyak_simple_batch.sh</pre>
@@ -415,6 +484,8 @@ install.packages(&quot;PACKAGENAME&quot;, lib=&quot;/gscratch/stf/UWNETID/rpacka
 <p>Submit a more complicated job to the queue!</p>
 
 <p><strong>Hint:</strong></p>
+
+<p>First, open vim or another text editor and replace UWNETID in Hyak_complicated.R and Hyak_complicated_batch.sh</p>
 
 <pre >exit
 cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
@@ -468,7 +539,7 @@ git push</pre>
 
 </article></slide><slide class=""><hgroup><h2>How can I get higher priority?</h2></hgroup><article  id="how-can-i-get-higher-priority-1">
 
-<ul>
+<ul class = 'build'>
 <li><p><strong>TRES</strong>: Trackable RESources (TRES) are things like cpu, memory, nodes. The more a given TRES Type is requested/allocated on a job, the greater the job priority will be for that job. Mox cares about cpu (i.e. high CPU gets high priority)</p></li>
 <li><p><strong>Fair-share</strong>: The fair-share component to a job&#39;s priority influences the order in which a user&#39;s queued jobs are scheduled to run based on the portion of the computing resources they have been allocated and the resources their jobs have already consumed. High priority to under-serviced accounts.</p></li>
 <li><p>Do not specify a walltime way longer than your job needs.</p></li>
@@ -477,7 +548,7 @@ git push</pre>
 
 </article></slide><slide class=""><hgroup><h2>What else can I do?</h2></hgroup><article  id="what-else-can-i-do">
 
-<ul>
+<ul class = 'build'>
 <li><p>Use the checkpoint queue - run your code on other groups&#39; unused resources</p></li>
 <li><p>Install and build new software</p></li>
 </ul>
@@ -490,7 +561,7 @@ git push</pre>
 
 <p>If all else fails, try</p>
 
-<ul>
+<ul class = 'build'>
 <li><p>Research Computing Club</p></li>
 <li><p>eScience Institute</p></li>
 <li><p>UW IT</p></li>

@@ -137,11 +137,11 @@ Hyak is part of an integrated, scalable, scientific super-computing infrastructu
 
 ## How does hyak work?
 
-Within hyak, **mox** is a supercomputing **cluster**. 
+* Within hyak, **mox** is a supercomputing **cluster**. 
 
-A **cluster** is a set of connected computers, **nodes**, that work together in a single system.
+* A **cluster** is a set of connected computers, **nodes**, that work together in a single system.
 
-In general, **clusters** are faster and more capable than a single computer or even several disconnected computers. 
+* In general, **clusters** are faster and more capable than a single computer or even several disconnected computers. 
 
 ## How does hyak work?
 
@@ -151,40 +151,15 @@ On mox, labs or groups can buy groups of nodes called **partitions**. The Resear
 
 ## How does hyak work?
 
-In general, the compute nodes have the following specs:
+ * In general, the compute nodes have the following specs:
 
-  * 28 cores
+    - 28 cores
   
-  * 128 GB RAM
+    - 128 GB RAM
   
-The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes. 
+ * The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes. 
 
-What does that mean?
-
-Hint: it's a lot
-
-## How does hyak work?
-
-<!-- structure goes here -->
-
-  * Login nodes (mox1, mox2)
-      * Have internet
-      * Use these to upload/download files and submit jobs
-      * They are slow so __don't__ do heavy processing
-      
-## How does hyak work?
-
-<!-- structure goes here -->
-
-  * Login nodes (mox1, mox2)
-      * Have internet
-      * Use these to upload/download files and submit jobs
-      * They are slow so __don't__ do heavy processing
-  
-  * Build nodes (n#####)
-      * Have internet
-      * Don't get to take a whole node (so also kinda slow)
-      * Just for compiling software
+ * That's a lot
 
 ## How does hyak work?
 
@@ -256,14 +231,6 @@ From GitHub:
 ```
 git clone git@github.com:GITHUB-USERNAME/REPO-NAME
 ```
- 
-## How do I upload files?
-
-From GitHub:
-
-```
-git clone git@github.com:GITHUB-USERNAME/REPO-NAME
-```
 
 From your computer:
 
@@ -297,19 +264,19 @@ Why use the scratch directory?
 
 ## What is a batch script?
 
-Place to:
+ * Place to:
 
-  * Define all the options for a job you submit to the queue
+    - Define all the options for a job you submit to the queue
 
-  * Set up environment (e.g. load modules)
+    - Set up environment (e.g. load modules)
   
-  * Run!
+    - Run!
   
-Syntax:
+ * Syntax:
 
-  * Comment using ##
+    - Comment using ##
   
-  * Set option using #SBATCH
+    - Set option using #SBATCH
 
 ## How do I write a batch script?
 
