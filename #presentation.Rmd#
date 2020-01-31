@@ -1,0 +1,65 @@
+---
+title: "Parallelization and Remote Servers"
+author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
+date: February 5, 2020
+output: ioslides_presentation
+---
+
+# Why Parallelize?
+
+## Big Data and Slow Code
+
+- Lots of data, simple operations, or:
+- Not so much data, complex operations, or even:
+- Lots of data, complex operations
+
+## (Dis)Advantages of parallelization
+
+- $N$ cores may speed up your code by a factor of $N$, but:
+  - only if you can efficiently distribute your code to cores
+- Iterative algorithms: the bane of parallel computation
+- Communication: the real bane of parallel computation
+
+## Basic Structure of a computer
+
+- Some CPUs (processors)
+  - Each CPU has some cores
+  - Each core can do 1 computation at a time
+  - Theoretically top speed = all cores active
+  - Reality: cores need to communicate
+
+## Why use a remote server
+
+- More cores
+- Built for heavy computation
+- Doesn't slow down your personal computer
+- Feel like a pro, brag to your friends
+
+## Recap
+
+- When should you parallelize
+- When should you not parallelize
+- When should you use a remote server
+
+## Practice
+
+- MCMC
+  - Yes and no
+  - Can run multiple chains but each chain is iterative
+  - Computationally intensive, run remotely
+- Bootstrap
+  - Yes
+  - Embarassingly parallel
+  - 
+- Likelihood evaluation
+  - Often, for big, conditionally independent data
+- Linear algebra
+  - Yes, for some operations
+  - Matrix multiplication, e.g.
+- Optimization
+
+# How to Access the QERM/SEFS Servers
+
+# A Basic R Program
+
+# How to Access Hyak

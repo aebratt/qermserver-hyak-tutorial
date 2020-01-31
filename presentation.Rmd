@@ -2,7 +2,10 @@
 title: "Parallelization and Remote Servers"
 author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
 date: February 5, 2020
-output: ioslides_presentation
+output: 
+    ioslides_presentation: 
+        incremental: true
+        widescreen: true
 header-includes: 
   - \usepackage{tikz}
   - \usepackage{pgfplots}
@@ -17,10 +20,89 @@ header-includes:
 
 # Objectives
 
-# Why Parallelize?
-
+# Remote Servers: Why Bother?
 <!-- I (Abby) think it would be good to say something about code profiling also -->
 <!-- And thinking through when your code is memory intensive vs. cpu intensive, how a computer works, etc -->
+
+## The Basics: How Do Computers Work?
+
+- Computation: CPUs 
+    - Each CPU has 1 or more cores
+    - Each core can do 1 computation at a time
+    - Theoretical top speed = all cores active
+    - Reality: cores need to communicate
+- Memory: RAM vs. not-RAM
+    - RAM is volatile, extremely fast, low-volume
+    - Hard drive (ex. SSD) is persistent, fairly slow, high-volume
+- Sidenote: GPUs and CUDA
+    - Each GPU holds 100s or 1000s of ''CUDA cores''
+    - Each CUDA core is very small
+    - Very fast for ''embarassingly parallel'' problems
+
+## ''Why is my code so slow''
+
+- The most common cases are:
+    - You've run out of RAM
+    - Your computer just has too many operations to do
+- ''How do I make it faster''
+    - Run it on a bigger computer with more RAM
+    - Run it on a bigger computer with more cores
+
+## ''Why is my code still so slow''
+
+Before you use a remote server:
+
+- Do some back-of-the-envelope math
+- Make sure you don't need an EB of RAM or an EFLOP
+- Sidenote: Units
+    - kilo, mega, giga (\(10^9\)), tera (\(10^{12}\)), peta (\(10^{15}\)), exa (\(10^{18}\)), zetta, yotta
+    - FLOP(S) = floating point operation (per second)
+    - newish desktop might have 32 GB RAM, 25 GLOPS speed
+
+## (Dis)advantages of parallelization
+
+\(N\) cores may save you time up to a factor of \(N\), but:
+
+- only if you efficiently distribute computation between cores
+- only if the programmer-time it takes is small
+
+- Sequential computation: the bane of parallel computation
+- Communication: the real bane of parallel computation
+
+## Example: Conjugate Gradient Descent {.build}
+
+Suppose you wish to calculate \(y = Ax\) but \(A = 10^5 \times 10^5\)
+
+Roughly speaking, \(A\) requites about \(10^{10}\) bytes or 10 GB RAM
+
+Moreover, you need to do \(10^{10}\) multiplications or 10 GFLOPs
+
+Not so bad, but say you want to do this \(10^6\) times (\(\approx\) 6 days)
+
+Luckily \(y_i = \sum A_{ij}x_j\) is independent of all other rows of \(A\)
+
+Calculating \(y_i\) \(\approx\) 10kB, 10 kFLOPs, GPU takes \(\approx\) 15 minutes
+
+Application: conjugate gradient descent to solve \(Ax = b\)
+
+## Recap: Why use a remote server?
+
+- Lots of CPUs (often a few GPUs) available
+- Doesn't slow down your personal computer
+- Feel like a pro, brag to your friends
+
+## Review
+
+- When should you parallelize?
+- When should you definitely not parallelize?
+- When should you use a remote server?
+
+## Practice
+
+- MCMC
+- Bootstrap
+- Likelihood evaluation
+- Optimization
 
 # How to Access the QERM/SEFS Servers
 
