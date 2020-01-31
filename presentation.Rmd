@@ -219,6 +219,14 @@ Modify a template! Here's a start:
 
 ## How do I submit a job to the queue?
 
+## Exercise
+
+**Hint:**
+
+```
+cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
+```
+
 ## Wait, what if I need some special library or software?
 
 ## When will my jobs run?
