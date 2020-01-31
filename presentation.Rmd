@@ -87,8 +87,6 @@ Hint: it's a lot
 
 <!-- structure goes here -->
 
-There are three types of node:
-
   * Login nodes (mox1, mox2)
       * Have internet
       * Use these to upload/download files and submit jobs
@@ -97,8 +95,6 @@ There are three types of node:
 ## How does hyak work?
 
 <!-- structure goes here -->
-
-There are three types of node:
 
   * Login nodes (mox1, mox2)
       * Have internet
@@ -113,8 +109,6 @@ There are three types of node:
 ## How does hyak work?
 
 <!-- structure goes here -->
-
-There are three types of node:
 
   * Login nodes (mox1, mox2)
       * Have internet
@@ -164,6 +158,17 @@ You're in!
 
 Log in!
 
+## Important locations
+
+  * /gscratch/stf
+    * Main work location for stf users
+    * Any files untouched for >30 days will be scrubbed!!
+  * /usr/lusers/<username>
+    * Home directory
+    * Only 10 GB of storage per user
+  * /tmp
+    * Node local storage
+
 ## How do I upload files?
 
 From GitHub:
@@ -212,6 +217,19 @@ Why use the scratch directory?
 
 ## What is a batch script?
 
+Place to:
+
+  * Define all the options for a job you submit to the queue
+
+  * Set up environment (e.g. load modules)
+  
+  * Run!
+  
+Syntax:
+
+  * Comment using ##
+  
+  * Set option using #SBATCH
 
 ## How do I write a batch script?
 
@@ -248,6 +266,40 @@ sbatch -p stf -A stf Hyak_simple_batch.sh
 
 ## Wait, what if I need some special library or software?
 
+You can do that! For R libraries, 
+
+```
+mkdir /gscratch/stf/UWNETID/rpackages
+srun -p build --time=2:00:00 --mem=10G --pty /bin/bash
+```
+
+We just created a directory for storing installed packages and got a session on an **interactive** build node. 
+
+## Wait, what if I need some special library or software?
+
+Open the command line
+
+```
+module load r_3.6.0
+module list
+R
+install.packages("PACKAGENAME", lib="/gscratch/stf/UWNETID/rpackages")
+```
+
+Choose a mirror somewhere on the west coast and press enter. 
+
+## Exercise
+
+Submit a more complicated job to the queue!
+
+**Hint:**
+
+```
+exit
+cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
+sbatch -p stf -A stf Hyak_complicated_batch.sh
+```
+
 ## When will my jobs run?
 
 See the whole stf partition queue this way:
@@ -279,6 +331,20 @@ scancel JOBID#
 
 ## My job finished! How do I download my results?
 
+From Hyak to GitHub:
+
+```
+git add filename
+git commit -m "informative commit message"
+git push
+```
+
+From Hyak to your computer:
+
+```
+scp UWNETID@hyak.washington.edu:path/to/file
+```
+
 ## How can I get higher priority?
 
 You can check the priority of queued jobs with
@@ -302,6 +368,12 @@ It may look something like
   * Do not specify a walltime way longer than your job needs.
   
   * Specify your memory! For 128G nodes use --mem=120G or less. The operating system requires some. 
+  
+## What else can I do?
+
+  * Use the checkpoint queue - run your code on other groups' unused resources
+  
+  * Install and build new software
 
 ## Where do I get help?
 

@@ -38,8 +38,6 @@ Note that the QERM/SEFS servers will are down approximately 1day/month for maint
   * [QERM wiki simulation servers page](http://wiki.cbr.washington.edu/qerm/index.php/QERM_simulation_servers)
   
   * [UDrive instructions](https://itconnect.uw.edu/wares/online-storage/u-drive-central-file-storage-for-users/)
-  
-  * other helpful resources???
 
 #### Hyak
 We find the Hyak wiki really difficult to navigate. In our opinion the most useful pages for getting started are:
@@ -52,6 +50,8 @@ We find the Hyak wiki really difficult to navigate. In our opinion the most usef
   
   * [Slurm tutorial](https://slurm.schedmd.com/quickstart.html)
   
+  * [Batch script examples](https://support.ceci-hpc.be/doc/_contents/QuickStart/SubmittingJobs/SlurmTutorial.html#more-submission-script-examples)
+  
   * [Research Computing Club](https://depts.washington.edu/uwrcc/)
   
   * [R Programming on Hyak](https://wiki.cac.washington.edu/display/hyakusers/Hyak+R+programming)
@@ -63,6 +63,4 @@ If you don't find what you need there and you have hunted around for a bit, the 
   * [eScience Institute office hours](https://escience.washington.edu/office-hours/)
   
   * [How to add a new SSH key to your GitHub account](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh). Stop typing your GitHub password every time you do something!
-  
-  * other resources???
 
