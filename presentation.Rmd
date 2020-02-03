@@ -1,17 +1,19 @@
 ---
 title: "Parallelization and Remote Servers"
-author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
-date: February 5, 2020
-output: 
-    ioslides_presentation: 
-        incremental: true
-        widescreen: true
-header-includes: 
-  - \usepackage{tikz}
-  - \usepackage{pgfplots}
-  - \usepackage{verbatim}
-  - \usepackage{textcomp}
-  - \usetikzlibrary{shapes,arrows}
+author: "Abby Bratt, Maria Kuruvilla, and Colin Okasaki"
+date: "February 5, 2020"
+output:
+  beamer_presentation:
+    incremental: yes
+  ioslides_presentation:
+    incremental: yes
+    widescreen: yes
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \usepackage{verbatim}
+- \usepackage{textcomp}
+- \usetikzlibrary{shapes,arrows}
 ---
 <!-- General Outline: -->
 <!-- Colin (30m) - Intro to how a computer works and some parallelization exercises -->
@@ -105,6 +107,28 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 - Optimization
 
 # How to Access the QERM/SEFS Servers
+
+## Some specs
+
+- 3 servers
+  + Pilchuk
+  + Skykomish
+  + Snoqualmie
+- 24 cores
+- 256 GB RAM 
+- 1 TB of disk space for temporary storage 
+
+## Access server
+
+- Remote Desktop Connection
+- Enter computer/connection name
+- Enter your netid and password
+
+
+- Off campus
+  + download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
+  + Open BIG-IP Edge Client
+  + Connect 
 
 # A Basic R Program
 
