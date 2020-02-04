@@ -1,17 +1,19 @@
 ---
 title: "Parallelization and Remote Servers"
-author: Abby Bratt, Maria Kuruvilla, and Colin Okasaki
-date: February 5, 2020
-output: 
-    ioslides_presentation: 
-        incremental: true
-        widescreen: true
-header-includes: 
-  - \usepackage{tikz}
-  - \usepackage{pgfplots}
-  - \usepackage{verbatim}
-  - \usepackage{textcomp}
-  - \usetikzlibrary{shapes,arrows}
+author: "Abby Bratt, Maria Kuruvilla, and Colin Okasaki"
+date: "February 5, 2020"
+output:
+  beamer_presentation:
+    incremental: yes
+  ioslides_presentation:
+    incremental: yes
+    widescreen: yes
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \usepackage{verbatim}
+- \usepackage{textcomp}
+- \usetikzlibrary{shapes,arrows}
 ---
 <!-- General Outline: -->
 <!-- Colin (30m) - Intro to how a computer works and some parallelization exercises -->
@@ -107,6 +109,28 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 
 # How to Access the QERM/SEFS Servers
 
+## Some specs
+
+- 3 servers
+  + Pilchuk
+  + Skykomish
+  + Snoqualmie
+- 24 cores
+- 256 GB RAM 
+- 1 TB of disk space for temporary storage 
+
+## Access server
+
+- Remote Desktop Connection
+- Enter computer/connection name
+- Enter your netid and password
+
+
+- Off campus
+  + download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
+  + Open BIG-IP Edge Client
+  + Connect 
+
 # A Basic R Program
 
 # How to Access Hyak
@@ -154,17 +178,15 @@ On mox, labs or groups can buy groups of nodes called **partitions**. The Resear
 
 ## How does hyak work?
 
-In general, the compute nodes have the following specs:
+ * In general, the compute nodes have the following specs:
 
-  * 28 cores
+    - 28 cores
   
-  * 128 GB RAM
+    - 128 GB RAM
   
-The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes. 
+ * The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes. 
 
-What does that mean?
-
-Hint: it's a lot
+ * That's a lot
 
 ## How does hyak work?
 
@@ -175,20 +197,6 @@ Hint: it's a lot
       * Use these to upload/download files and submit jobs
       * They are slow so __don't__ do heavy processing
       
-## How does hyak work?
-
-<!-- structure goes here -->
-
-  * Login nodes (mox1, mox2)
-      * Have internet
-      * Use these to upload/download files and submit jobs
-      * They are slow so __don't__ do heavy processing
-  
-  * Build nodes (n#####)
-      * Have internet
-      * Don't get to take a whole node (so also kinda slow)
-      * Just for compiling software
-
 ## How does hyak work?
 
 <!-- structure goes here -->
@@ -206,8 +214,6 @@ Hint: it's a lot
   * Compute nodes (n#####)
       * No internet
       * Where your jobs run
-      
-## How does Hyak work?
 
 Visually, this looks like:
 
@@ -259,19 +265,11 @@ From GitHub:
 ```
 git clone git@github.com:GITHUB-USERNAME/REPO-NAME
 ```
- 
-## How do I upload files?
-
-From GitHub:
-
-```
-git clone git@github.com:GITHUB-USERNAME/REPO-NAME
-```
 
 From your computer:
 
 ```
-scp filename UWNETID@mox.hyak.uw.edu:path/to/destination/directory
+scp filename UWNETID@mox.hyak.uw.edu:/path/to/destination/directory
 ```
 
 ## Exercise
@@ -300,19 +298,19 @@ Why use the scratch directory?
 
 ## What is a batch script?
 
-Place to:
+ * Place to:
 
-  * Define all the options for a job you submit to the queue
+    - Define all the options for a job you submit to the queue
 
-  * Set up environment (e.g. load modules)
+    - Set up environment (e.g. load modules)
   
-  * Run!
+    - Run!
   
-Syntax:
+ * Syntax:
 
-  * Comment using ##
+    - Comment using ##
   
-  * Set option using #SBATCH
+    - Set option using #SBATCH
 
 ## How do I write a batch script?
 
@@ -341,6 +339,8 @@ Submit a job to the queue!
 Submit a job to the queue!
 
 **Hint:**
+
+First, open vim or another text editor and replace UWNETID in Hyak_simple_batch.sh
 
 ```
 cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
@@ -376,6 +376,8 @@ Choose a mirror somewhere on the west coast and press enter.
 Submit a more complicated job to the queue!
 
 **Hint:**
+
+First, open vim or another text editor and replace UWNETID in Hyak_complicated.R and Hyak_complicated_batch.sh
 
 ```
 exit
@@ -425,7 +427,7 @@ git push
 From Hyak to your computer:
 
 ```
-scp UWNETID@hyak.washington.edu:path/to/file
+scp UWNETID@mox.hyak.uw.edu:/path/to/file .
 ```
 
 ## How can I get higher priority?
@@ -473,3 +475,4 @@ If all else fails, try
   * eScience Institute
   
   * UW IT
+

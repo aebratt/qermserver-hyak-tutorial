@@ -24,6 +24,8 @@ Details of how to do each of these are at the link above. If you are feeling adv
 
 Make sure you pay attention to any emails from the HPC list. They contain helpful Hyak updates as well as notifications about club meetings. **Everyone is required to attend at least one club meeting a year to stay on the STF partition**. 
 
+**Bonus homework for Windows users:** Check that you have SSH enabled as that's how we'll log in to Hyak. This should be default if you are running a recentish version of Windows 10+. If you're old school, you might check out [puTTY](https://www.putty.org/). 
+
 #### For the QERM/SEFS Servers portion:
 Please take a look at the [QERM wiki simulation servers page](http://wiki.cbr.washington.edu/qerm/index.php/QERM_simulation_servers). Here are the basic steps you should have completed before class on Feb 5:
 
