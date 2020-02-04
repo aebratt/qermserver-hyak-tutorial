@@ -68,6 +68,7 @@ Before you use a remote server:
 
 - Sequential computation: the bane of parallel computation
 - Communication: the real bane of parallel computation
+- Pre-emptive optimization: the bane of all computation
 
 ## Example: Conjugate Gradient Descent {.build}
 
