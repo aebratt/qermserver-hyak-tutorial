@@ -20,8 +20,6 @@ header-includes:
 <!-- Maria (30m) - Walk through an example on the SEFS servers -->
 <!-- Abby (30m) - Walk through an example on Hyak -->
 
-# Objectives
-
 # Remote Servers: Why Bother?
 <!-- I (Abby) think it would be good to say something about code profiling also -->
 <!-- And thinking through when your code is memory intensive vs. cpu intensive, how a computer works, etc -->
@@ -49,6 +47,7 @@ header-includes:
 - ''How do I make it faster''
     - Run it on a bigger computer with more RAM
     - Run it on a bigger computer with more cores
+- Solution: use a remote server!
 
 ## ''Why is my code still so slow''
 
@@ -66,7 +65,7 @@ Before you use a remote server:
 \(N\) cores may save you time up to a factor of \(N\), but:
 
 - only if you efficiently distribute computation between cores
-- only if the programmer-time it takes is small
+- only if the programmer-time it takes is relatively small
 
 - Sequential computation: the bane of parallel computation
 - Communication: the real bane of parallel computation
