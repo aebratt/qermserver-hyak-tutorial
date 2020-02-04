@@ -3,11 +3,11 @@ title: "Parallelization and Remote Servers"
 author: "Abby Bratt, Maria Kuruvilla, and Colin Okasaki"
 date: "February 5, 2020"
 output:
-  beamer_presentation:
-    incremental: yes
   ioslides_presentation:
     incremental: yes
     widescreen: yes
+  beamer_presentation:
+    incremental: yes
 header-includes:
 - \usepackage{tikz}
 - \usepackage{pgfplots}
@@ -111,26 +111,146 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 ## Some specs
 
 - 3 servers
-  + Pilchuk
-  + Skykomish
-  + Snoqualmie
+    - Pilchuk
+    - Skykomish
+    - Snoqualmie
 - 24 cores
 - 256 GB RAM 
 - 1 TB of disk space for temporary storage 
 
-## Access server
+
+
+
+
+
+
+## Windows 
 
 - Remote Desktop Connection
-- Enter computer/connection name
+- Enter computer
 - Enter your netid and password
 
 
 - Off campus
-  + download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
-  + Open BIG-IP Edge Client
-  + Connect 
+    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
+    - Open BIG-IP Edge Client
+    - Connect 
+    
+## Linux
+
+- Launch Remmina (or similar software)
+- Make sure it is set to RDP (to connect to Windows based desktop)
+- Enter IP addresss
+- Enter your netid and password
+
+
+- Off campus
+    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
+    - Use Firefox to install the f5vpn software on Linux systems
+    
+## MAC
+
+- Microsoft Remote Desktop Connection
+- Enter computer/connection name e.g Pilchuck
+- PC name e.g. pilchuck.sefs.uw.edu
+- Enter your netid and password
+
+
+- Off campus
+    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
+    - Open BIG-IP Edge Client
+    - Connect 
+    
+
 
 # A Basic R Program
+
+## Parallel computing
+
+- Using this [website](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html)
+- Use dataset iris 
+- Sample randomly from these 100 points
+- Run a generalised linear model to see if Species is a function of Sepal.length
+- Save coefficients of model
+- Repeat 10000 times
+
+## Parallel Computing
+
+```{r}
+head(iris,10)
+```
+
+## Using doParallel
+
+```{r}
+library(foreach)
+library(doParallel)
+registerDoParallel(numCores)
+x <- iris[which(iris[,5] != "setosa"), c(1,5)]
+trials <- 10000
+system.time({
+  r <- foreach(icount(trials), .combine=rbind) %dopar% {
+    ind <- sample(100, 100, replace=TRUE)
+    result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+    coefficients(result1)
+  }
+})
+```
+
+## Without doParallel
+
+```{r}
+system.time({
+  r <- foreach(icount(trials), .combine=rbind) %do% {
+    ind <- sample(100, 100, replace=TRUE)
+    result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+    coefficients(result1)
+  }
+})
+```
+
+## Using lapply()
+
+```{r}
+x <- iris[which(iris[,5] != "setosa"), c(1,5)]
+trials <- seq(1, 10000)
+boot_fx <- function(trial) {
+  ind <- sample(100, 100, replace=TRUE)
+  result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+  r <- coefficients(result1)
+  res <- rbind(data.frame(), r)
+}
+system.time({
+  results <- lapply(trials, boot_fx)
+})
+```
+
+
+## Using mclapply()
+
+```{r}
+library(parallel)
+numCores <- detectCores()
+numCores
+```
+
+## Using mclapply()
+
+```{r}
+x <- iris[which(iris[,5] != "setosa"), c(1,5)]
+trials <- seq(1, 10000)
+boot_fx <- function(trial) {
+  ind <- sample(100, 100, replace=TRUE)
+  result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+  r <- coefficients(result1)
+  res <- rbind(data.frame(), r)
+}
+system.time({
+  results <- mclapply(trials, boot_fx, mc.cores = 1)
+})
+```
+
+
 
 # How to Access Hyak
 
