@@ -6,6 +6,8 @@ output:
   ioslides_presentation:
     incremental: yes
     widescreen: yes
+beamer_presentation:
+    incremental: yes
 header-includes:
 - \usepackage{tikz}
 - \usepackage{pgfplots}
