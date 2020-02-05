@@ -6,8 +6,6 @@ output:
   ioslides_presentation:
     incremental: yes
     widescreen: yes
-  beamer_presentation:
-    incremental: yes
 header-includes:
 - \usepackage{tikz}
 - \usepackage{pgfplots}
@@ -182,7 +180,7 @@ head(iris,10)
 
 ## Using doParallel
 
-```{r}
+```{r, eval = TRUE}
 library(foreach)
 library(doParallel)
 registerDoParallel(numCores)
@@ -199,7 +197,7 @@ system.time({
 
 ## Without doParallel
 
-```{r}
+```{r, eval = TRUE}
 system.time({
   r <- foreach(icount(trials), .combine=rbind) %do% {
     ind <- sample(100, 100, replace=TRUE)
