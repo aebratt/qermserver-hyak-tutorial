@@ -118,7 +118,18 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 - 1 TB of disk space for temporary storage 
 
 
+## MAC
 
+- Microsoft Remote Desktop Connection
+- Enter computer/connection name e.g Pilchuck
+- PC name e.g. pilchuck.sefs.uw.edu
+- Enter your netid and password
+
+
+- Off campus
+    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
+    - Open BIG-IP Edge Client
+    - Connect
 
 
 
@@ -126,7 +137,7 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 ## Windows 
 
 - Remote Desktop Connection
-- Enter computer
+- Enter computer (snoqualmie.sefs.uw.edu)
 - Enter your netid and password
 
 
@@ -149,23 +160,14 @@ Application: conjugate gradient descent to solve \(Ax = b\)
     - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
     - Use Firefox to install the f5vpn software on Linux systems
     
-## MAC
-
-- Microsoft Remote Desktop Connection
-- Enter computer/connection name e.g Pilchuck
-- PC name e.g. pilchuck.sefs.uw.edu
-- Enter your netid and password
-
-
-- Off campus
-    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
-    - Open BIG-IP Edge Client
-    - Connect 
+ 
     
 ## Navigating
 
 - Go to [https://github.com/aebratt/qermserver-hyak-tutorial]
-- Download into U drive
+- Open Git bash
+- cd Downloads
+- git clone https://github.com/aebratt/qermserver-hyak-tutorial.git
 - Open parallel_computing.R
 
 # A Basic R Program
@@ -238,13 +240,6 @@ system.time({
 ```
 
 
-## Using mclapply()
-
-```{r, eval = TRUE}
-library(parallel)
-numCores <- detectCores()
-numCores
-```
 
 ## Using mclapply()
 
