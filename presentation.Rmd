@@ -183,8 +183,10 @@ head(iris,10)
 ## Using doParallel
 
 ```{r}
+library(parallel)
+numCores <- detectCores()
+numCores
 library(foreach)
-library(doParallel)
 registerDoParallel(numCores)
 x <- iris[which(iris[,5] != "setosa"), c(1,5)]
 trials <- 10000
@@ -250,7 +252,17 @@ system.time({
 })
 ```
 
+## Summary
 
+- We should all parallelize (some times)
+
+- Advantages 
+    - Easy to learn how to use
+    - Lots of cores and RAM
+    
+- Disadvantages
+    - No GPU
+    - New softwares get installed once a month during maintenance 
 
 # How to Access Hyak
 
