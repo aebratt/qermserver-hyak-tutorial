@@ -140,7 +140,9 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 
 - Launch Remmina (or similar software)
 - Make sure it is set to RDP (to connect to Windows based desktop)
-- Enter IP addresss
+- Enter Name of server
+- Enter Server
+- Enter Domain - NETID
 - Enter your netid and password
 
 
