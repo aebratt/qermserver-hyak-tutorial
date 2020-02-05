@@ -182,7 +182,7 @@ head(iris,10)
 
 ## Using doParallel
 
-```{r}
+```{r, eval = FALSE}
 library(parallel)
 numCores <- detectCores()
 numCores
@@ -201,7 +201,7 @@ system.time({
 
 ## Without doParallel
 
-```{r}
+```{r, eval = FALSE}
 system.time({
   r <- foreach(icount(trials), .combine=rbind) %do% {
     ind <- sample(100, 100, replace=TRUE)
@@ -213,7 +213,7 @@ system.time({
 
 ## Using lapply()
 
-```{r}
+```{r, eval=FALSE}
 x <- iris[which(iris[,5] != "setosa"), c(1,5)]
 trials <- seq(1, 10000)
 boot_fx <- function(trial) {
@@ -230,7 +230,7 @@ system.time({
 
 ## Using mclapply()
 
-```{r}
+```{r, eval = FALSE}
 library(parallel)
 numCores <- detectCores()
 numCores
@@ -238,7 +238,7 @@ numCores
 
 ## Using mclapply()
 
-```{r}
+```{r, eval = FALSE}
 x <- iris[which(iris[,5] != "setosa"), c(1,5)]
 trials <- seq(1, 10000)
 boot_fx <- function(trial) {
@@ -607,347 +607,7 @@ If all else fails, try
   
   * UW IT
 
-=======
----
-title: "Parallelization and Remote Servers"
-author: "Abby Bratt, Maria Kuruvilla, and Colin Okasaki"
-date: "February 5, 2020"
-output:
-  ioslides_presentation:
-    incremental: yes
-    widescreen: yes
-beamer_presentation:
-    incremental: yes
-header-includes:
-- \usepackage{tikz}
-- \usepackage{pgfplots}
-- \usepackage{verbatim}
-- \usepackage{textcomp}
-- \usetikzlibrary{shapes,arrows}
----
-<!-- General Outline: -->
-<!-- Colin (30m) - Intro to how a computer works and some parallelization exercises -->
-<!-- Maria (30m) - Walk through an example on the SEFS servers -->
-<!-- Abby (30m) - Walk through an example on Hyak -->
 
-# Remote Servers: Why Bother?
-<!-- I (Abby) think it would be good to say something about code profiling also -->
-<!-- And thinking through when your code is memory intensive vs. cpu intensive, how a computer works, etc -->
-
-## The Basics: How Do Computers Work?
-
-- Computation: CPUs 
-    - Each CPU has 1 or more cores
-    - Each core can do 1 computation at a time
-    - Theoretical top speed = all cores active
-    - Reality: cores need to communicate
-- Memory: RAM vs. not-RAM
-    - RAM is volatile, extremely fast, low-volume
-    - Hard drive (ex. SSD) is persistent, fairly slow, high-volume
-- Sidenote: GPUs and CUDA
-    - Each GPU holds 100s or 1000s of ''CUDA cores''
-    - Each CUDA core is very small
-    - Very fast for ''embarassingly parallel'' problems
-
-## ''Why is my code so slow''
-
-- The most common cases are:
-    - You've run out of RAM
-    - Your computer just has too many operations to do
-- ''How do I make it faster''
-    - Run it on a bigger computer with more RAM
-    - Run it on a bigger computer with more cores
-- Solution: use a remote server!
-
-## ''Why is my code still so slow''
-
-Before you use a remote server:
-
-- Do some back-of-the-envelope math
-- Make sure you don't need an EB of RAM or an EFLOP
-- Sidenote: Units
-    - kilo, mega, giga (\(10^9\)), tera (\(10^{12}\)), peta (\(10^{15}\)), exa (\(10^{18}\)), zetta, yotta
-    - FLOP(S) = floating point operation (per second)
-    - newish desktop might have 32 GB RAM, 25 GLOPS speed
-
-## (Dis)advantages of parallelization
-
-\(N\) cores may save you time up to a factor of \(N\), but:
-
-- only if you efficiently distribute computation between cores
-- only if the programmer-time it takes is relatively small
-
-- Sequential computation: the bane of parallel computation
-- Communication: the real bane of parallel computation
-- Pre-emptive optimization: the bane of all computation
-
-## Example: Conjugate Gradient Descent {.build}
-
-Suppose you wish to calculate \(y = Ax\) but \(A = 10^5 \times 10^5\)
-
-Roughly speaking, \(A\) requites about \(10^{10}\) bytes or 10 GB RAM
-
-Moreover, you need to do \(10^{10}\) multiplications or 10 GFLOPs
-
-Not so bad, but say you want to do this \(10^6\) times (\(\approx\) 6 days)
-
-Luckily \(y_i = \sum A_{ij}x_j\) is independent of all other rows of \(A\)
-
-Calculating \(y_i\) \(\approx\) 10kB, 10 kFLOPs, GPU takes \(\approx\) 15 minutes
-
-Application: conjugate gradient descent to solve \(Ax = b\)
-
-## Recap: Why use a remote server?
-
-- Lots of CPUs (often a few GPUs) available
-- Doesn't slow down your personal computer
-- Feel like a pro, brag to your friends
-
-## Review
-
-- When should you parallelize?
-- When should you definitely not parallelize?
-- When should you use a remote server?
-
-## Practice
-
-- MCMC
-- Bootstrap
-- Likelihood evaluation
-- Optimization
-
-# How to Access the QERM/SEFS Servers
-
-## Some specs
-
-- 3 servers
-    - Pilchuk
-    - Skykomish
-    - Snoqualmie
-- 24 cores
-- 256 GB RAM 
-- 1 TB of disk space for temporary storage 
-
-
-
-
-
-
-
-## Windows 
-
-- Remote Desktop Connection
-- Enter computer
-- Enter your netid and password
-
-
-- Off campus
-    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
-    - Open BIG-IP Edge Client
-    - Connect 
-    
-## Linux
-
-- Launch Remmina (or similar software)
-- Make sure it is set to RDP (to connect to Windows based desktop)
-- Enter IP addresss
-- Enter your netid and password
-
-
-- Off campus
-    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
-    - Use Firefox to install the f5vpn software on Linux systems
-    
-## MAC
-
-- Microsoft Remote Desktop Connection
-- Enter computer/connection name e.g Pilchuck
-- PC name e.g. pilchuck.sefs.uw.edu
-- Enter your netid and password
-
-
-- Off campus
-    - download Husky OnNet from [UWare](https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/)
-    - Open BIG-IP Edge Client
-    - Connect 
-    
-
-
-# A Basic R Program
-
-## Parallel computing
-
-- Using this [website](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html)
-- Use dataset iris 
-- Sample randomly from these 100 points
-- Run a generalised linear model to see if Species is a function of Sepal.length
-- Save coefficients of model
-- Repeat 10000 times
-
-## Parallel Computing
-
-```{r}
-head(iris,10)
-```
-
-## Using doParallel
-
-```{r, eval = TRUE}
-library(foreach)
-library(doParallel)
-registerDoParallel(numCores)
-x <- iris[which(iris[,5] != "setosa"), c(1,5)]
-trials <- 10000
-system.time({
-  r <- foreach(icount(trials), .combine=rbind) %dopar% {
-    ind <- sample(100, 100, replace=TRUE)
-    result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
-    coefficients(result1)
-  }
-})
-```
-
-## Without doParallel
-
-```{r, eval = TRUE}
-system.time({
-  r <- foreach(icount(trials), .combine=rbind) %do% {
-    ind <- sample(100, 100, replace=TRUE)
-    result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
-    coefficients(result1)
-  }
-})
-```
-
-## Using lapply()
-
-```{r}
-x <- iris[which(iris[,5] != "setosa"), c(1,5)]
-trials <- seq(1, 10000)
-boot_fx <- function(trial) {
-  ind <- sample(100, 100, replace=TRUE)
-  result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
-  r <- coefficients(result1)
-  res <- rbind(data.frame(), r)
-}
-system.time({
-  results <- lapply(trials, boot_fx)
-})
-```
-
-
-## Using mclapply()
-
-```{r}
-library(parallel)
-numCores <- detectCores()
-numCores
-```
-
-## Using mclapply()
-
-```{r}
-x <- iris[which(iris[,5] != "setosa"), c(1,5)]
-trials <- seq(1, 10000)
-boot_fx <- function(trial) {
-  ind <- sample(100, 100, replace=TRUE)
-  result1 <- glm(x[ind,2]~x[ind,1], family=binomial(logit))
-  r <- coefficients(result1)
-  res <- rbind(data.frame(), r)
-}
-system.time({
-  results <- mclapply(trials, boot_fx, mc.cores = 1)
-})
-```
-
-
-
-# How to Access Hyak
-
-<!-- Outline: -->
-<!-- 1. What is hyak?  -->
-<!-- 2. How does hyak work? -->
-<!-- 3. How to log in -->
-<!-- 4. How to upload files -->
-<!-- 5. How to write a batch script (things you submit to slurm) -->
-<!-- 6. How to submit a job -->
-<!--   6bonus - wait, what if I need a special library or piece of software? -->
-<!-- 7. How to check what's happening in the queue -->
-<!-- 8. How to download finished results -->
-<!-- 9. How to game slurm (requesting memory, etc strategically so you get high priority) -->
-<!-- 10. Where do get help doing things more advanced than this (multinode stuff, working in languages that need to be compiled, etc) -->
-
-## What is hyak?
-
-Hyak is a word in Chinook Jargon, meaning "fast." Chinook Jargon is the trade language of the Pacific Northwest, incorporating terms from Chinook and Chehalis and other local languages, as well as French and English. We've chosen words from Chinook Jargon for the names of systems in the UW research cyber infrastructure to emphasize their role in supporting the broad range of UW research users and our ties to our place between the mountains and Salish Sea.
-
---UW IT Connect
-
-## What is hyak?
-
-Hyak is part of an integrated, scalable, scientific super-computing infrastructure operated by UW-IT. It includes the lolo tapearchive system, a high-performance research network, **the Hyak compute infrastructure (the HPC clusters)**, and any scientific support services on making this useful in your research workflows.
-
---UW IT Connect
-
-## How does hyak work?
-
-Within hyak, **mox** is a supercomputing **cluster**. 
-
-A **cluster** is a set of connected computers, **nodes**, that work together in a single system.
-
-In general, **clusters** are faster and more capable than a single computer or even several disconnected computers. 
-
---UW Research Computing Club
-
-## How does hyak work?
-
-On mox, labs or groups can buy groups of nodes called **partitions**. The Research Computing Club applied for a big grant from the Student Technology Fee fund (that we all pay into every quarter!) to purchase nodes accessible to all students. 
-
-<!-- If you want to vote on how these dollars get allocated, you can submit proposals or endorse others' proposals on the uwstf website https://uwstf.org/proposals/2020/21 -->
-
-## How does hyak work?
-
- * In general, the compute nodes have the following specs:
-
-    - 28 cores
-  
-    - 128 GB RAM
-  
- * The STF partition is currently 92 regular nodes, plus some interactive and GPU nodes. 
-
- * That's a lot
-
-## How does hyak work?
-
-<!-- structure goes here -->
-
-  * Login nodes (mox1, mox2)
-      * Have internet
-      * Use these to upload/download files and submit jobs
-      * They are slow so __don't__ do heavy processing
-      
-## How does hyak work?
-
-<!-- structure goes here -->
-
-  * Login nodes (mox1, mox2)
-      * Have internet
-      * Use these to upload/download files and submit jobs
-      * They are slow so __don't__ do heavy processing
-  
-  * Build nodes (n#####)
-      * Have internet
-      * Don't get to take a whole node (so also kinda slow)
-      * Just for compiling software
-  
-  * Compute nodes (n#####)
-      * No internet
-      * Where your jobs run
-
-Visually, this looks like:
-
-<div class="centered">
-![](images/Hyak_architecture.png){width=500px}
 </div>
   
 ## How do I log in?
@@ -1204,5 +864,3 @@ If all else fails, try
   * eScience Institute
   
   * UW IT
-
-
