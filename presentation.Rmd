@@ -390,7 +390,7 @@ Log in!
 From GitHub:
 
 ```
-git clone git@github.com:GITHUB-USERNAME/REPO-NAME
+git clone https://github.com/aebratt/qermserver-hyak-tutorial.git
 ```
 
 From your computer:
