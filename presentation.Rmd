@@ -161,7 +161,11 @@ Application: conjugate gradient descent to solve \(Ax = b\)
     - Open BIG-IP Edge Client
     - Connect 
     
+## Navigating
 
+- Go to [https://github.com/aebratt/qermserver-hyak-tutorial]
+- Download into U drive
+- Open parallel_computing.R
 
 # A Basic R Program
 
@@ -868,4 +872,4 @@ If all else fails, try
   
   * eScience Institute
   
-  * UW IT
+  * UW IT 
