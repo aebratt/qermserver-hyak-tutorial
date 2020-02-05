@@ -182,7 +182,7 @@ head(iris,10)
 
 ## Using doParallel
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 library(parallel)
 numCores <- detectCores()
 numCores
@@ -201,7 +201,7 @@ system.time({
 
 ## Without doParallel
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 system.time({
   r <- foreach(icount(trials), .combine=rbind) %do% {
     ind <- sample(100, 100, replace=TRUE)
@@ -213,7 +213,7 @@ system.time({
 
 ## Using lapply()
 
-```{r, eval=FALSE}
+```{r, eval = TRUE}
 x <- iris[which(iris[,5] != "setosa"), c(1,5)]
 trials <- seq(1, 10000)
 boot_fx <- function(trial) {
@@ -230,7 +230,7 @@ system.time({
 
 ## Using mclapply()
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 library(parallel)
 numCores <- detectCores()
 numCores
@@ -238,7 +238,7 @@ numCores
 
 ## Using mclapply()
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 x <- iris[which(iris[,5] != "setosa"), c(1,5)]
 trials <- seq(1, 10000)
 boot_fx <- function(trial) {
