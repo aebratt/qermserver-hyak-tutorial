@@ -112,9 +112,7 @@ slide:not(.current) .plotly.html-widget{
 
 <!-- Abby (30m) - Walk through an example on Hyak -->
 
-<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Objectives</h2></hgroup><article  id="objectives">
-
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Remote Servers: Why Bother?</h2></hgroup><article  id="remote-servers-why-bother">
+<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Remote Servers: Why Bother?</h2></hgroup><article  id="remote-servers-why-bother">
 
 <!-- I (Abby) think it would be good to say something about code profiling also -->
 
@@ -161,6 +159,7 @@ slide:not(.current) .plotly.html-widget{
 <li>Run it on a bigger computer with more RAM</li>
 <li>Run it on a bigger computer with more cores</li>
 </ul></li>
+<li>Solution: use a remote server!</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>&#39;&#39;Why is my code still so slow&#39;&#39;</h2></hgroup><article  id="why-is-my-code-still-so-slow">
@@ -185,9 +184,10 @@ slide:not(.current) .plotly.html-widget{
 
 <ul class = 'build'>
 <li>only if you efficiently distribute computation between cores</li>
-<li><p>only if the programmer-time it takes is small</p></li>
+<li><p>only if the programmer-time it takes is relatively small</p></li>
 <li>Sequential computation: the bane of parallel computation</li>
-<li><p>Communication: the real bane of parallel computation</p></li>
+<li>Communication: the real bane of parallel computation</li>
+<li><p>Pre-emptive optimization: the bane of all computation</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Example: Conjugate Gradient Descent</h2></hgroup><article  id="example-conjugate-gradient-descent" class="build">
@@ -233,7 +233,202 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>How to Access the QERM/SEFS Servers</h2></hgroup><article  id="how-to-access-the-qermsefs-servers">
 
+</article></slide><slide class=""><hgroup><h2>Some specs</h2></hgroup><article  id="some-specs">
+
+<ul class = 'build'>
+<li>3 servers
+
+<ul class = 'build'>
+<li>Pilchuk</li>
+<li>Skykomish</li>
+<li>Snoqualmie</li>
+</ul></li>
+<li>24 cores</li>
+<li>256 GB RAM</li>
+<li>1 TB of disk space for temporary storage</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Windows</h2></hgroup><article  id="windows">
+
+<ul class = 'build'>
+<li>Remote Desktop Connection</li>
+<li>Enter computer</li>
+<li><p>Enter your netid and password</p></li>
+<li>Off campus
+
+<ul class = 'build'>
+<li>download Husky OnNet from <a href='https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/' title=''>UWare</a></li>
+<li>Open BIG-IP Edge Client</li>
+<li>Connect</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Linux</h2></hgroup><article  id="linux">
+
+<ul class = 'build'>
+<li>Launch Remmina (or similar software)</li>
+<li>Make sure it is set to RDP (to connect to Windows based desktop)</li>
+<li>Enter Name of server</li>
+<li>Enter Server</li>
+<li>Enter Domain - NETID</li>
+<li><p>Enter your netid and password</p></li>
+<li>Off campus
+
+<ul class = 'build'>
+<li>download Husky OnNet from <a href='https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/' title=''>UWare</a></li>
+<li>Use Firefox to install the f5vpn software on Linux systems</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>MAC</h2></hgroup><article  id="mac">
+
+<ul class = 'build'>
+<li>Microsoft Remote Desktop Connection</li>
+<li>Enter computer/connection name e.g Pilchuck</li>
+<li>PC name e.g. pilchuck.sefs.uw.edu</li>
+<li><p>Enter your netid and password</p></li>
+<li>Off campus
+
+<ul class = 'build'>
+<li>download Husky OnNet from <a href='https://itconnect.uw.edu/connect/uw-networks/about-husky-onnet/use-husky-onnet/terms-conditions/' title=''>UWare</a></li>
+<li>Open BIG-IP Edge Client</li>
+<li>Connect</li>
+</ul></li>
+</ul>
+
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>A Basic R Program</h2></hgroup><article  id="a-basic-r-program">
+
+</article></slide><slide class=""><hgroup><h2>Parallel computing</h2></hgroup><article  id="parallel-computing">
+
+<ul class = 'build'>
+<li>Using this <a href='https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html' title=''>website</a></li>
+<li>Use dataset iris</li>
+<li>Sample randomly from these 100 points</li>
+<li>Run a generalised linear model to see if Species is a function of Sepal.length</li>
+<li>Save coefficients of model</li>
+<li>Repeat 10000 times</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Parallel Computing</h2></hgroup><article  id="parallel-computing-1">
+
+<pre class = 'prettyprint lang-r'>head(iris,10)</pre>
+
+<pre >##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa</pre>
+
+</article></slide><slide class=""><hgroup><h2>Load packages</h2></hgroup><article  id="load-packages">
+
+<pre class = 'prettyprint lang-r'>library(parallel)
+library(doParallel)</pre>
+
+<pre >## Loading required package: foreach</pre>
+
+<pre >## Loading required package: iterators</pre>
+
+<pre class = 'prettyprint lang-r'>library(foreach)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Using doParallel</h2></hgroup><article  id="using-doparallel">
+
+<pre class = 'prettyprint lang-r'>numCores &lt;- detectCores()
+numCores</pre>
+
+<pre >## [1] 4</pre>
+
+<pre class = 'prettyprint lang-r'>registerDoParallel(numCores)
+x &lt;- iris[which(iris[,5] != &quot;setosa&quot;), c(1,5)]
+trials &lt;- 10000
+system.time({
+  r &lt;- foreach(icount(trials), .combine=rbind) %dopar% {
+    ind &lt;- sample(100, 100, replace=TRUE)
+    result1 &lt;- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+    coefficients(result1)
+  }
+})</pre>
+
+<pre >##    user  system elapsed 
+##  44.052   1.459  15.965</pre>
+
+</article></slide><slide class=""><hgroup><h2>Without doParallel</h2></hgroup><article  id="without-doparallel">
+
+<pre class = 'prettyprint lang-r'>system.time({
+  r &lt;- foreach(icount(trials), .combine=rbind) %do% {
+    ind &lt;- sample(100, 100, replace=TRUE)
+    result1 &lt;- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+    coefficients(result1)
+  }
+})</pre>
+
+<pre >##    user  system elapsed 
+##  30.565   0.645  31.723</pre>
+
+</article></slide><slide class=""><hgroup><h2>Using lapply()</h2></hgroup><article  id="using-lapply">
+
+<pre class = 'prettyprint lang-r'>x &lt;- iris[which(iris[,5] != &quot;setosa&quot;), c(1,5)]
+trials &lt;- seq(1, 10000)
+boot_fx &lt;- function(trial) {
+  ind &lt;- sample(100, 100, replace=TRUE)
+  result1 &lt;- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+  r &lt;- coefficients(result1)
+  res &lt;- rbind(data.frame(), r)
+}
+system.time({
+  results &lt;- lapply(trials, boot_fx)
+})</pre>
+
+<pre >##    user  system elapsed 
+##  31.999   0.591  32.899</pre>
+
+</article></slide><slide class=""><hgroup><h2>Using mclapply()</h2></hgroup><article  id="using-mclapply">
+
+<pre class = 'prettyprint lang-r'>library(parallel)
+numCores &lt;- detectCores()
+numCores</pre>
+
+<pre >## [1] 4</pre>
+
+</article></slide><slide class=""><hgroup><h2>Using mclapply()</h2></hgroup><article  id="using-mclapply-1">
+
+<pre class = 'prettyprint lang-r'>x &lt;- iris[which(iris[,5] != &quot;setosa&quot;), c(1,5)]
+trials &lt;- seq(1, 10000)
+boot_fx &lt;- function(trial) {
+  ind &lt;- sample(100, 100, replace=TRUE)
+  result1 &lt;- glm(x[ind,2]~x[ind,1], family=binomial(logit))
+  r &lt;- coefficients(result1)
+  res &lt;- rbind(data.frame(), r)
+}
+system.time({
+  results &lt;- mclapply(trials, boot_fx, mc.cores = 1)
+})</pre>
+
+<pre >##    user  system elapsed 
+##  32.460   0.650  33.715</pre>
+
+</article></slide><slide class=""><hgroup><h2>Summary</h2></hgroup><article  id="summary">
+
+<ul class = 'build'>
+<li><p>We should all parallelize (some times)</p></li>
+<li>Advantages
+
+<ul class = 'build'>
+<li>Easy to learn how to use</li>
+<li>Lots of cores and RAM</li>
+</ul></li>
+<li>Disadvantages
+
+<ul class = 'build'>
+<li>No GPU</li>
+<li>New softwares get installed once a month during maintenance</li>
+</ul></li>
+</ul>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>How to Access Hyak</h2></hgroup><article  id="how-to-access-hyak">
 
@@ -275,11 +470,13 @@ slide:not(.current) .plotly.html-widget{
 
 </article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work">
 
-<ul class = 'build'>
-<li><p>Within hyak, <strong>mox</strong> is a supercomputing <strong>cluster</strong>.</p></li>
-<li><p>A <strong>cluster</strong> is a set of connected computers, <strong>nodes</strong>, that work together in a single system.</p></li>
-<li><p>In general, <strong>clusters</strong> are faster and more capable than a single computer or even several disconnected computers.</p></li>
-</ul>
+<p>Within hyak, <strong>mox</strong> is a supercomputing <strong>cluster</strong>.</p>
+
+<p>A <strong>cluster</strong> is a set of connected computers, <strong>nodes</strong>, that work together in a single system.</p>
+
+<p>In general, <strong>clusters</strong> are faster and more capable than a single computer or even several disconnected computers.</p>
+
+<p>&#8211;UW Research Computing Club</p>
 
 </article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-1">
 
@@ -312,6 +509,20 @@ slide:not(.current) .plotly.html-widget{
 <li>Use these to upload/download files and submit jobs</li>
 <li>They are slow so <strong>don&#39;t</strong> do heavy processing</li>
 </ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>How does hyak work?</h2></hgroup><article  id="how-does-hyak-work-4">
+
+<!-- structure goes here -->
+
+<ul class = 'build'>
+<li>Login nodes (mox1, mox2)
+
+<ul class = 'build'>
+<li>Have internet</li>
+<li>Use these to upload/download files and submit jobs</li>
+<li>They are slow so <strong>don&#39;t</strong> do heavy processing</li>
+</ul></li>
 <li>Build nodes (n#####)
 
 <ul class = 'build'>
@@ -326,8 +537,6 @@ slide:not(.current) .plotly.html-widget{
 <li>Where your jobs run</li>
 </ul></li>
 </ul>
-
-</article></slide><slide class=""><hgroup><h2>How does Hyak work?</h2></hgroup><article  id="how-does-hyak-work-4">
 
 <p>Visually, this looks like:</p>
 
@@ -554,6 +763,241 @@ git push</pre>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Where do I get help?</h2></hgroup><article  id="where-do-i-get-help">
+
+<p>If you have trouble or you want to do more advanced stuff, check out</p>
+
+<pre >man SLURMCOMMAND</pre>
+
+<p>If all else fails, try</p>
+
+<ul class = 'build'>
+<li><p>Research Computing Club</p></li>
+<li><p>eScience Institute</p></li>
+<li><p>UW IT</p></li>
+</ul>
+
+</div>
+
+</article></slide><slide class=""><hgroup><h2>How do I log in?</h2></hgroup><article  id="how-do-i-log-in-1">
+
+<p>All nodes share the same file system.</p>
+
+<p>Open a terminal window. Type</p>
+
+<pre >ssh UWNETID@mox.hyak.uw.edu</pre>
+
+<p>Follow two-factor authentication instructions.</p>
+
+<p>You&#39;re in!</p>
+
+</article></slide><slide class=""><hgroup><h2>It should look like this&#8230;</h2></hgroup><article  id="it-should-look-like-this...-2">
+
+<div class="centered">
+<img width="600px" src='images/Hyak_successful_login.png' title='fig:'/></div>
+
+<!-- Only works if you have access to Hyak, of course! -->
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-6">
+
+<p>Log in!</p>
+
+</article></slide><slide class=""><hgroup><h2>Important locations</h2></hgroup><article  id="important-locations-1">
+
+<ul class = 'build'>
+<li>/gscratch/stf
+
+<ul class = 'build'>
+<li>Main work location for stf users</li>
+<li>Any files untouched for &gt;30 days will be scrubbed!!</li>
+</ul></li>
+<li>/usr/lusers/<username>
+
+<ul class = 'build'>
+<li>Home directory</li>
+<li>Only 10 GB of storage per user</li>
+</ul></li>
+<li>/tmp
+
+<ul class = 'build'>
+<li>Node local storage</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>How do I upload files?</h2></hgroup><article  id="how-do-i-upload-files-1">
+
+<p>From GitHub:</p>
+
+<pre >git clone git@github.com:GITHUB-USERNAME/REPO-NAME</pre>
+
+<p>From your computer:</p>
+
+<pre >scp filename UWNETID@mox.hyak.uw.edu:/path/to/destination/directory</pre>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-7">
+
+<p>Clone the git repo for this class to <strong>your</strong> scratch directory</p>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-8">
+
+<p>Clone the git repo for this class to <strong>your</strong> scratch directory</p>
+
+<p><strong>Hint:</strong></p>
+
+<p>From login</p>
+
+<pre >cd /gscratch/stf
+mkdir ./UWNETID
+cd ./UWNETID
+git clone git@github.com:GITHUB-USERNAME/REPO-NAME
+cd REPO-NAME</pre>
+
+<p><strong>Bonus:</strong></p>
+
+<p>Why use the scratch directory?</p>
+
+</article></slide><slide class=""><hgroup><h2>What is a batch script?</h2></hgroup><article  id="what-is-a-batch-script-1">
+
+<ul class = 'build'>
+<li><p>Place to:</p>
+
+<ul class = 'build'>
+<li><p>Define all the options for a job you submit to the queue</p></li>
+<li><p>Set up environment (e.g. load modules)</p></li>
+<li><p>Run!</p></li>
+</ul></li>
+<li><p>Syntax:</p>
+
+<ul class = 'build'>
+<li><p>Comment using ##</p></li>
+<li><p>Set option using #SBATCH</p></li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>How do I write a batch script?</h2></hgroup><article  id="how-do-i-write-a-batch-script-1">
+
+<p>Short answer: don&#39;t.</p>
+
+<p>Modify a template! Here&#39;s one:</p>
+
+<pre >vim Hyak_simple_batch.sh</pre>
+
+<p>Or open this file in your favorite text editor</p>
+
+</article></slide><slide class=""><hgroup><h2>It should look like this&#8230;</h2></hgroup><article  id="it-should-look-like-this...-3">
+
+<div class="centered">
+<img width="600px" src='images/Hyak_simple_batch.png' title='fig:'/></div>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-9">
+
+<p>Submit a job to the queue!</p>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-10">
+
+<p>Submit a job to the queue!</p>
+
+<p><strong>Hint:</strong></p>
+
+<p>First, open vim or another text editor and replace UWNETID in Hyak_simple_batch.sh</p>
+
+<pre >cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
+sbatch -p stf -A stf Hyak_simple_batch.sh</pre>
+
+</article></slide><slide class=""><hgroup><h2>Wait, what if I need some special library or software?</h2></hgroup><article  id="wait-what-if-i-need-some-special-library-or-software-2">
+
+<p>You can do that! For R libraries,</p>
+
+<pre >mkdir /gscratch/stf/UWNETID/rpackages
+srun -p build --time=2:00:00 --mem=10G --pty /bin/bash</pre>
+
+<p>We just created a directory for storing installed packages and got a session on an <strong>interactive</strong> build node.</p>
+
+</article></slide><slide class=""><hgroup><h2>Wait, what if I need some special library or software?</h2></hgroup><article  id="wait-what-if-i-need-some-special-library-or-software-3">
+
+<p>Open the command line</p>
+
+<pre >module load r_3.6.0
+module list
+R
+install.packages(&quot;PACKAGENAME&quot;, lib=&quot;/gscratch/stf/UWNETID/rpackages&quot;)</pre>
+
+<p>Choose a mirror somewhere on the west coast and press enter.</p>
+
+</article></slide><slide class=""><hgroup><h2>Exercise</h2></hgroup><article  id="exercise-11">
+
+<p>Submit a more complicated job to the queue!</p>
+
+<p><strong>Hint:</strong></p>
+
+<p>First, open vim or another text editor and replace UWNETID in Hyak_complicated.R and Hyak_complicated_batch.sh</p>
+
+<pre >exit
+cd /gscratch/stf/UWNETID/qermserver-hyak-tutorial
+sbatch -p stf -A stf Hyak_complicated_batch.sh</pre>
+
+</article></slide><slide class=""><hgroup><h2>When will my jobs run?</h2></hgroup><article  id="when-will-my-jobs-run-1">
+
+<p>See the whole stf partition queue this way:</p>
+
+<pre >squeue -p stf</pre>
+
+<p>See just your jobs this way:</p>
+
+<pre >squeue -p stf -u UWNETID</pre>
+
+<p>You can also try:</p>
+
+<pre >sstat -j JOBID-RUNNING
+sacct -j JOBID-COMPLETED</pre>
+
+</article></slide><slide class=""><hgroup><h2>Oops, I made a mistake!</h2></hgroup><article  id="oops-i-made-a-mistake-1">
+
+<p>Cancel jobs with</p>
+
+<pre >scancel JOBID#</pre>
+
+</article></slide><slide class=""><hgroup><h2>My job finished! How do I download my results?</h2></hgroup><article  id="my-job-finished-how-do-i-download-my-results-1">
+
+<p>From Hyak to GitHub:</p>
+
+<pre >git add filename
+git commit -m &quot;informative commit message&quot;
+git push</pre>
+
+<p>From Hyak to your computer:</p>
+
+<pre >scp UWNETID@mox.hyak.uw.edu:/path/to/file .</pre>
+
+</article></slide><slide class=""><hgroup><h2>How can I get higher priority?</h2></hgroup><article  id="how-can-i-get-higher-priority-2">
+
+<p>You can check the priority of queued jobs with</p>
+
+<pre >sprio -p stf</pre>
+
+<p>How to interpret?</p>
+
+<p>It may look something like</p>
+
+<div class="centered">
+<img width="600px" src='images/Hyak_priority.png' title='fig:'/></div>
+
+</article></slide><slide class=""><hgroup><h2>How can I get higher priority?</h2></hgroup><article  id="how-can-i-get-higher-priority-3">
+
+<ul class = 'build'>
+<li><p><strong>TRES</strong>: Trackable RESources (TRES) are things like cpu, memory, nodes. The more a given TRES Type is requested/allocated on a job, the greater the job priority will be for that job. Mox cares about cpu (i.e. high CPU gets high priority)</p></li>
+<li><p><strong>Fair-share</strong>: The fair-share component to a job&#39;s priority influences the order in which a user&#39;s queued jobs are scheduled to run based on the portion of the computing resources they have been allocated and the resources their jobs have already consumed. High priority to under-serviced accounts.</p></li>
+<li><p>Do not specify a walltime way longer than your job needs.</p></li>
+<li><p>Specify your memory! For 128G nodes use &#8211;mem=120G or less. The operating system requires some.</p></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>What else can I do?</h2></hgroup><article  id="what-else-can-i-do-1">
+
+<ul class = 'build'>
+<li><p>Use the checkpoint queue - run your code on other groups&#39; unused resources</p></li>
+<li><p>Install and build new software</p></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Where do I get help?</h2></hgroup><article  id="where-do-i-get-help-1">
 
 <p>If you have trouble or you want to do more advanced stuff, check out</p>
 

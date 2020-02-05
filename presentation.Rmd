@@ -180,13 +180,18 @@ Application: conjugate gradient descent to solve \(Ax = b\)
 head(iris,10)
 ```
 
+## Load packages
+```{r, eval = TRUE}
+library(parallel)
+library(doParallel)
+library(foreach)
+```
+
 ## Using doParallel
 
 ```{r, eval = TRUE}
-library(parallel)
 numCores <- detectCores()
 numCores
-library(foreach)
 registerDoParallel(numCores)
 x <- iris[which(iris[,5] != "setosa"), c(1,5)]
 trials <- 10000
