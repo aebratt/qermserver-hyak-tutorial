@@ -1,7 +1,7 @@
 # QERM Server and Hyak Tutorial
 This repository contains all necessary materials for QERM 597, Feb 5 2020
 
-Authors: Abby Bratt, Maria Kuruvilla, Colin Okasaki
+Authors: Abby Bratt, Maria Kuruvilla, Connie Okasaki
 
 ## Prerequisites
 
