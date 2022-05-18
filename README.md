@@ -3,6 +3,10 @@ This repository contains all necessary materials for QERM 597, Feb 5 2020
 
 Authors: Abby Bratt, Maria Kuruvilla, Connie Okasaki
 
+**EDIT May 18, 2022
+
+**Updated by Abby Bratt, Emily Sellinger, Kelly Mistry, and Anne Polyakov
+
 ## Prerequisites
 
 Here is your homework for QERM 597 on Feb 5—Hyak/SEFS/QERM Servers. It requires getting access to Hyak from the Research Computing Club and the SEFS/QERM servers from SEFSIT. Both processes can take **up to a week** depending on how busy the IT folks are so we recommend you begin thinking about this as soon as possible so you are ready to go on the 5th. 
