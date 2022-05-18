@@ -3,9 +3,9 @@ This repository contains all necessary materials for QERM 597, Feb 5 2020
 
 Authors: Abby Bratt, Maria Kuruvilla, Connie Okasaki
 
-**EDIT May 18, 2022
+**EDIT May 18, 2022**
 
-**Updated by Abby Bratt, Emily Sellinger, Kelly Mistry, and Anne Polyakov
+**Updated by Abby Bratt, Emily Sellinger, Kelly Mistry, and Anne Polyakov**
 
 ## Prerequisites
 
